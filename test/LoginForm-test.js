@@ -38,6 +38,7 @@ describe('<LoginForm />', function () {
       wrapper.find('#test-username').simulate('change', { target: { value: 'johndoe' } });
       wrapper.find('#test-password').simulate('change', { target: { value: 'supersecret' } });
       wrapper.find('form').simulate('submit', { preventDefault: noop });
+      console.log(spy.callCount);
       expect(spy.calledOnce).toBeTruthy('The `onSubmit` prop is not being called exactly once');
     });
 
