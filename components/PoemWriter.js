@@ -16,7 +16,7 @@ class PoemWriter extends React.Component {
           arr[i] = line[i].split(/\b\s+\b/).length;
         }
        	console.log(arr)
-        if (arr[0] == 5 && arr[1] == 3 && arr[2] == 5 ) {
+        if (arr[0] == arr[2] && arr[2]-2 == 3  ) {
           return true;
         }
       } 
