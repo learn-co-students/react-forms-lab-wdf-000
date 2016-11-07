@@ -19,18 +19,16 @@ class PoemWriter extends React.Component {
 
   validPoem(poem){
     let validity = false;
+    let words;
     let lines = poem.split("\n");
     if (lines.length === 3){
-      validity = true;
+      words = lines.map(function(line){
+        return line.match(/\s*(\w*)\s*/g).filter(function(element){if (element){return element}}).length
+      })
+      if (words[0] === 5 && words[1] === 3 && words[2] === 5){
+        validity = true;
+      }
     }
-    ////Currently only checks for this yet all the poem tests pass, hmmpff.
-    // The poem has three lines.
-
-    ////Still need to test for these
-    
-    // The first has five words.
-    // Then three words.
-    // The third has five words.
     return validity;
   }
 
