@@ -15,7 +15,11 @@ class TwitterMessage extends React.Component {
 
   handleChange(event) {
     this.setState({
-      value: event.target.value
+      value: event.target.value,
+      count: ++this.state.count
+    }, () => {
+      const count = this.state.count;
+      console.log(`count is now ${count}`)
     })
   }
 
@@ -23,9 +27,9 @@ class TwitterMessage extends React.Component {
   render() {
     return (
       <div>
-        <strong>Your message:</strong>
-        <input type="text" value={this.state.value} onChange={this.handleChange} onKeyUp={this.handleChange}/>
-        <p>Exeeded by {this.props.maxChars - this.state.value.length} </p>
+        <strong>Your tweet:</strong>
+        <input type="text" onKeyUp={this.handleChange}/>
+        <p>Remaining characters: {this.props.maxChars - this.state.count} </p>
       </div>
     );
   }

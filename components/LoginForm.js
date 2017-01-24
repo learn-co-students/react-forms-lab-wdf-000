@@ -5,61 +5,59 @@ class LoginForm extends React.Component {
     super();
 
     this.state = {
-      text: '',
-      password: ''
+      username: '',
+      password: '',
     };
 
-    this.handleText = this.handleText.bind(this);
-    this.handlePassword = this.handlePassword.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
-  handleText(event) {
-    this.setState ({
-      text: event.target.value,
-    })
+  handleInputChange(field, event) {
+    this.setState({
+      [field]: event.target.value,
+    });
   }
 
-  handlePassword(event) {
-    this.setState ({
-      password: event.target.value
-    })
-  }
+  handleFormSubmit(ev) {
+    ev.preventDefault();
+    const { username, password } = this.state;
 
-  handleSubmit(e){
-    e.preventDefault();
-    let userInfo = {name: this.state.name, password: this.state.password}
-
-    if (!userInfo.name || !userInfo.password) {
-      return
-    } else {
-      this.props.onSubmit(userInfo)
+    if (!username || !password) {
+      return;
     }
-  }
 
+    this.props.onSubmit({
+      username,
+      password
+    });
+  }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleFormSubmit}>
         <div>
           <label>
             Username
-            <input id="test-username" type="text" value={this.state.text} onChange={this.handleText}/>
+            <input id="test-username" type="text" value={this.state.username} onChange={this.handleInputChange.bind(this, 'username')} />
           </label>
         </div>
         <div>
           <label>
             Password
-            <input id="test-password" type="password" value={this.state.password} onChange={this.handlePassword}/>
+            <input id="test-password" type="password" value={this.state.password} onChange={this.handleInputChange.bind(this, 'password')} />
           </label>
         </div>
-        // <div>
-        //   <button type="submit" onSubmit={this.handleSubmit}>Log in</button>
-        // </div>
+        <div>
+          <button type="submit">Log in</button>
+        </div>
       </form>
     );
   }
 }
+
+LoginForm.propTypes = {
+  onSubmit: React.PropTypes.func,
+};
 
 module.exports = LoginForm;

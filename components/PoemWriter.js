@@ -43,7 +43,7 @@ class PoemWriter extends React.Component {
     return (
       <div>
         <textarea rows="3" cols="60" value={this.state.text} onChange={this.handleText}/>
-        {!this.state.isValid ? <div id="poem-validation-error" style={{color: 'red'}}>This poem is not written in the right structure!</div> : null }
+        {this.state.isValid ? null : <div id="poem-validation-error" style={{color: 'green'}}>This poem is not written in the right structure (yet)!</div>}
       </div>
     );
   }
