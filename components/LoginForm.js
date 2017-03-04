@@ -30,4 +30,8 @@ class LoginForm extends React.Component {
   }
 }
 
+LoginForm.propTypes = {
+  onSubmit: React.PropTypes.func
+}
+
 module.exports = LoginForm;
